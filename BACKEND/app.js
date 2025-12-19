@@ -5,9 +5,10 @@ import connectDB from "./src/config/mongo.config.js"
 import short_url from "./src/routes/short_url.route.js"
 import { redirectFromShortUrl } from './src/controller/short_url.controller.js';
 import { errorHandler } from './src/utils/errorHandler.js';
-
+import cors from 'cors';
 
 const app = express();
+app.use(cors());
 
 app.use(express.json()) //body parser
 app.use(express.urlencoded({extended:true})) 
