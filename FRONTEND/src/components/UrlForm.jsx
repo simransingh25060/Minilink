@@ -1,5 +1,5 @@
 import React,{ useState } from 'react';
-import axios from 'axios';
+import { createShortUrl } from '../api/shortUrl.api';
 
 const UrlForm = () => {
 
@@ -8,8 +8,8 @@ const UrlForm = () => {
     const [copied, setCopied] = useState(false)
 
     const handleSubmit = async () => {
-        const {data} = await axios.post("http://localhost:3001/api/create", {url})
-        setShortUrl(data)  
+        const shortUrl = await createShortUrl(url)
+        setShortUrl(shortUrl)  
     }
 
     const handleCopy = () => {
@@ -82,3 +82,8 @@ return (
 }
 
 export default UrlForm;
+
+//tanstack useQuery- to fetch data 
+//it gives things - data , isLoading, isPending(used as priority), error 
+//tanstack mutation- to create/update/delete data fron frontend to backend
+//querykey- unique key to identify the query    
