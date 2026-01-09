@@ -1,18 +1,23 @@
 import React, { useState } from "react";
 import { loginUser } from "../api/user.api";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../store/slice/authSlice.js";
 
 const LoginForm = ({state}) => {
-  const [email, setEmail] = useState("xyzi@gmail.com");
-  const [password, setPassword] = useState("xyzi250");
+  const [email, setEmail] = useState("xyziii@gmail.com");
+  const [password, setPassword] = useState("xyziii250");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-
+  const auth = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  console.log(auth);
   const handleSubmit = async () => {
     setLoading(true);
     setError('');
 
     try {
-    await loginUser(password, email);
+        const data = await loginUser(password, email);
+        dispatch(login(data.user));
       setLoading(false);
     } catch (err) {
         setLoading(false);
