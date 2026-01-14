@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "@tanstack/react-router";
 
-const Navbar = ({ isLoggedIn, userName, onLogout }) => {
+const Navbar = () => {
   return (
     <nav className="bg-white border border-b-black">
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
