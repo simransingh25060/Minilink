@@ -82,12 +82,12 @@ return (
       <td className="px-6 py-4">
         <div className="text-sm">
           <a
-            href={`http://localhost:3000/${url.short_url}`}
+            href={`${import.meta.env.VITE_API_URL}/${url.short_url}`}
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-600 hover:text-blue-900 hover:underline"
           >
-            localhost:3000/{url.short_url}
+           {import.meta.env.VITE_API_URL}/{url.short_url}
           </a>
         </div>
       </td>
@@ -100,7 +100,7 @@ return (
 </td>
 <td className="px-6 py-4 text-sm font-medium">
    <button
-                    onClick={() => handleCopy(`http://localhost:3000/${url.short_url}`, url._id)}
+                    onClick={() => handleCopy(`${import.meta.env.VITE_API_URL}/${url.short_url}`, url._id)}
                     className={`inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-md shadow-sm ${
                       copiedId === url._id ? 'bg-green-600 text-white hover:bg-green-700' : 'bg-blue-600 text-white hover:bg-blue-700'
                     } focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200`}
