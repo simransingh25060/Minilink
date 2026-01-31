@@ -13,6 +13,16 @@ import cookieParser from 'cookie-parser';
 import User from './src/models/user.model.js';
 
 const app = express();
+
+app.use(async (req, res, next) => {
+    try {
+        await connectDB();
+        next();
+    } catch (error) {
+        console.error("Database connection failed:", error);
+        res.status(500).json({ error: "Database connection failed" });
+    }
+});
 app.use(cors({
     origin: ['http://localhost:5173', process.env.FRONTEND_URL],
     credentials: true
@@ -29,10 +39,15 @@ app.get("/:id", redirectFromShortUrl)
 
 app.use(errorHandler)
 
+app.get('/', (req, res) => {
+    res.json({ message: 'Server is listening' });
+})
+
 app.listen(3001, () => {
-    connectDB()
     console.log("Server is running on port http://localhost:3001")
 })
+
+export default app;
 
 //GET- redirection
 //POST- create short url
